@@ -1,0 +1,19 @@
+services:
+  backend:
+    build:
+      context: ./xavier-backend
+      dockerfile: Dockerfile
+    command: "npm run dev"
+    expose:
+      - 8050
+    ports:
+      - 127.0.0.1:8050:8050
+    working_dir: /home/node/app
+  
+  database:
+    image: mongo:latest
+    container_name: mongo_server
+    volumes:
+      - ./database:/data/db
+    ports:
+      - 127.0.0.1:27017:27017
