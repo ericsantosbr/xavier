@@ -1,3 +1,6 @@
 [submodule "xavier-backend"]
 	path = xavier-backend
 	url = https://github.com/ericsantosbr/xavier-backend
+[submodule "xavier-frontend"]
+	path = xavier-frontend
+	url = git@github.com:ericsantosbr/xavier-frontend.git
