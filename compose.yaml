@@ -1,19 +1,32 @@
 services:
   backend:
-    build:
-      context: ./xavier-backend
-      dockerfile: Dockerfile
-    command: "npm run dev"
-    expose:
-      - 8050
+    # build:
+    #   context: ./xavier-backend
+    #   dockerfile: Dockerfile
+    container_name: backend_xavier
+    image: node:latest
+    command: bash -c `npm run dev`
     ports:
-      - 127.0.0.1:8050:8050
+      - 8050:8050
     working_dir: /home/node/app
+    volumes:
+      - ./xavier-backend:/home/node/app
+  
+  frontend:
+    container_name: frontend_xavier
+    image: node:latest
+    command: bash -c `npm run start`
+    ports:
+      - 3000:3000
+    working_dir: /home/node/app
+    volumes:
+      - ./xavier-frontend:/home/node/app
+    
   
   database:
-    image: mongo:latest
-    container_name: mongo_server
+    image: b70536aeb250
+    container_name: xavier_server
     volumes:
       - ./database:/data/db
     ports:
-      - 127.0.0.1:27017:27017
+      - 27017:27017
